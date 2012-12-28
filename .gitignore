@@ -4,3 +4,9 @@
 /Debug
 /ipch
 PkgInfo
+*.aps
+*.dsp
+*.dsw
+*.suo
+*.opensdf
+*.pbproj/
