@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3e3a6965-7a22-46e3-a352-4c8a5acf1d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{910d0754-ea7e-490b-8daf-0b60abe37a4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VST">
+      <UniqueIdentifier>{ec5a66e1-e411-41e1-90b1-d079aec84f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Headers">
+      <UniqueIdentifier>{685766d3-fc15-4b08-a8b4-d3512a96e263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VST\VSTGUI">
+      <UniqueIdentifier>{58604bae-ea0d-413e-8d27-b382618e9ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VST\VSTGUI\VSTGUI Headers">
+      <UniqueIdentifier>{b6247cc7-db61-4874-868e-4c2f7e0fcd2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="VST\VST Headers">
+      <UniqueIdentifier>{7ad22732-34ca-4015-9174-44a53dc268e5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AmplitudeImposer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AmplitudeImposerEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AmplitudeImposerMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RightClickControls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\audioeffect.cpp">
+      <Filter>VST</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\audioeffectx.cpp">
+      <Filter>VST</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstplugmain.cpp">
+      <Filter>VST</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\vstgui.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\aeffguieditor.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\cfileselector.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\cscrollview.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\ctabview.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\plugguieditor.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="VST\vstgui.sf\vstgui\vstcontrols.cpp">
+      <Filter>VST\VSTGUI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AmplitudeImposerEditor.h">
+      <Filter>Source Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="AmplitudeImposer.h">
+      <Filter>Source Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RightClickControls.h">
+      <Filter>Source Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Source Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\aeffguieditor.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\cfileselector.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\cscrollview.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\ctabview.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\plugguieditor.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstcontrols.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstgui.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstkeycode.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstplugscarbon.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstplugsmac.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstplugsmacho.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\vstgui.sf\vstgui\vstplugsquartz.h">
+      <Filter>VST\VSTGUI\VSTGUI Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\aeffeditor.h">
+      <Filter>VST\VST Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\audioeffect.h">
+      <Filter>VST\VST Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VST\audioeffectx.h">
+      <Filter>VST\VST Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AmplitudeImposer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="images\back.bmp" />
+    <CustomBuild Include="images\slider.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AmplitudeImposer.def">
+      <Filter>Source Files\Headers</Filter>
+    </None>
+  </ItemGroup>
+</Project>
