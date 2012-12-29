@@ -8,5 +8,6 @@ PkgInfo
 *.dsp
 *.dsw
 *.suo
+*.sdf
 *.opensdf
 *.pbproj/
