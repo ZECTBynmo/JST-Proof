@@ -2,6 +2,7 @@
 /VST2
 /VST3
 /Debug
+/Release
 /ipch
 PkgInfo
 *.aps
