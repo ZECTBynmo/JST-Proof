@@ -24,11 +24,7 @@
 #ifndef RIGHTCLICKCONTROLS_H_
 #define RIGHTCLICKCONTROLS_H_
 
-#ifndef VSTGUI3
 #include "vstgui.sf/vstgui/vstcontrols.h"
-#else
-#include "vstgui_3_0_beta2/vstcontrols.h"
-#endif
 
 //----------------------------------------------------------------------------
 class RightClickAnimKnob : public CAnimKnob
