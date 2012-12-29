@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "deps/include/node.h"
 #include "AmplitudeImposer.h"
 #include "AmplitudeImposerEditor.h"
 #include "audioeffect.h"
