@@ -88,7 +88,8 @@
       <ModuleDefinitionFile>$(SolutionDir)\AmplitudeImposer.def</ModuleDefinitionFile>
       <OutputFile>.\Debug\AmplitudeImposer.dll</OutputFile>
       <ImportLibrary>.\Debug\AmplitudeImposer.lib</ImportLibrary>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrt.lib;libcmt.lib;Ws2_32.lib;WINMM.LIB;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrtd.lib;libcmt.lib;Ws2_32.lib;Iphlpapi.lib;MSVCPRTD.lib;WINMM.LIB;psapi.lib;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -106,6 +107,7 @@
       <PrecompiledHeaderOutputFile>.\Release\AmplitudeImposer.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Release\</ObjectFileName>
       <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -133,7 +135,7 @@
       <OutputFile>.\Release\AmplitudeImposer.dll</OutputFile>
       <ImportLibrary>.\Release\AmplitudeImposer.lib</ImportLibrary>
       <AdditionalLibraryDirectories>C:\Program Files\DevStudio\MyProjects\VST Plugins\Common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrt.lib;libcmt.lib;Ws2_32.lib;WINMM.LIB;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrt.lib;libcmt.lib;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
