@@ -12,3 +12,4 @@ PkgInfo
 *.sdf
 *.opensdf
 *.pbproj/
+deps/node.lib
