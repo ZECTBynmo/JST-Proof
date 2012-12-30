@@ -48,7 +48,7 @@ AmplitudeImposerProg::AmplitudeImposerProg()
 //----------------------------------------------------------------------------
 AmplitudeImposer::AmplitudeImposer(audioMasterCallback audioMaster)
 	: AudioEffectX(audioMaster, kNumPrograms, kNumParams)
-{
+{	
 	programs = 0;
 
 	fDepth = 1.0f;

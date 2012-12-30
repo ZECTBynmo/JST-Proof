@@ -20,11 +20,19 @@
 //	FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 //	DEALINGS IN THE SOFTWARE.
 //	--------------------------------------------------------------------------
-
+#include "deps/include/node.h"
 #include "AmplitudeImposerEditor.h"
 #include "AmplitudeImposer.h"
 
 #include <stdio.h>
+
+#ifdef WINDOWS
+#include <direct.h>
+#define GetCurrentDir _getcwd
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#endif
 
 //-----------------------------------------------------------------------------
 // resource id's
@@ -67,6 +75,22 @@ AmplitudeImposerEditor::~AmplitudeImposerEditor()
 }
 
 //-----------------------------------------------------------------------------
+void launchNode(uv_work_t *req) {
+	char cCurrentPath[FILENAME_MAX]; 
+
+	GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
+
+	char *argv[] = {cCurrentPath, "C:/test.js" };
+	int argc = sizeof(argv) / sizeof(char*) - 1;
+
+	node::Start( argc, argv, true );
+}
+
+void afterCB(uv_work_t *req) {
+	fprintf(stderr, "Done calculating %dth fibonacci\n", *(int *) req->data);
+}
+
+//-----------------------------------------------------------------------------
 bool AmplitudeImposerEditor::open(void *ptr)
 {
 	CPoint point;
@@ -74,6 +98,12 @@ bool AmplitudeImposerEditor::open(void *ptr)
 
 	// !!! always call this !!!
 	AEffGUIEditor::open(ptr);
+
+	uv_work_t req;
+	uv_queue_work(uv_default_loop(), &req, (uv_work_cb)launchNode, (uv_after_work_cb)afterCB);
+
+	// Start up the node event loop
+// 	node::RunNonBlockingLoop();
 	
 	// load some bitmaps
 	if(!sliderBitmap)

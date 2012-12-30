@@ -46,6 +46,7 @@ protected:
 	virtual void close();
 
 private:
+
 	RightClickHSlider *depth;
 	RightClickHSlider *threshold;
 
