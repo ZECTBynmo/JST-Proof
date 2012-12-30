@@ -87,7 +87,8 @@ namespace node {
 
 NODE_EXTERN extern bool no_deprecation;
 
-NODE_EXTERN int Start(int argc, char *argv[]);
+NODE_EXTERN int Start(int argc, char *argv[], bool bRunBockingIO = true);
+NODE_EXTERN void RunNonBlockingLoop();
 
 char** Init(int argc, char *argv[]);
 v8::Handle<v8::Object> SetupProcessObject(int argc, char *argv[]);
