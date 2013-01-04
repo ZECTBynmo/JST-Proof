@@ -81,14 +81,17 @@ void launchNode(uv_work_t *req) {
 	GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
 
 	char *argv[] = {cCurrentPath, "C:/test.js" };
-	int argc = sizeof(argv) / sizeof(char*) - 1;
+	int argc = 2;
 
 	node::Start( argc, argv, true );
+	//node::RunBlockingLoopAsync();
 }
 
 void afterCB(uv_work_t *req) {
 	fprintf(stderr, "Done calculating %dth fibonacci\n", *(int *) req->data);
 }
+
+static uv_thread_t asyncThread;
 
 //-----------------------------------------------------------------------------
 bool AmplitudeImposerEditor::open(void *ptr)
@@ -100,10 +103,14 @@ bool AmplitudeImposerEditor::open(void *ptr)
 	AEffGUIEditor::open(ptr);
 
 	uv_work_t req;
-	uv_queue_work(uv_default_loop(), &req, (uv_work_cb)launchNode, (uv_after_work_cb)afterCB);
+	//uv_queue_work(uv_default_loop(), &req, (uv_work_cb)launchNode, (uv_after_work_cb)afterCB);
 
 	// Start up the node event loop
 // 	node::RunNonBlockingLoop();
+
+	uv_thread_create( &asyncThread, (void (__cdecl *)(void *))launchNode, NULL );
+
+	//uv_thread_join( &asyncThread );
 	
 	// load some bitmaps
 	if(!sliderBitmap)
