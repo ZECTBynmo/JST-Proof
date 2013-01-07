@@ -23,6 +23,10 @@
 #include "deps/include/node.h"
 #include "AmplitudeImposerEditor.h"
 #include "AmplitudeImposer.h"
+#include "include/cef_client.h"
+#include "include/cef_browser.h"
+#include "cefclient/cefclient.h"
+#include "cefclient/client_handler.h"
 
 #include <stdio.h>
 
@@ -33,6 +37,9 @@
 #include <unistd.h>
 #define GetCurrentDir getcwd
 #endif
+#include <winuser.h>
+
+
 
 //-----------------------------------------------------------------------------
 // resource id's
@@ -63,6 +70,28 @@ AmplitudeImposerEditor::AmplitudeImposerEditor(AudioEffect *effect)
 	rect.top    = 0;
 	rect.right  = (short)backBitmap->getWidth();
 	rect.bottom = (short)backBitmap->getHeight();
+
+	// Create an instance of our CefClient implementation. Various methods in the
+	// MyClient instance will be called to notify about and customize browser
+	// behavior. 
+	//CefRefPtr<ClientApp> client(new ClientApp);
+	CefRefPtr<ClientHandler> client;
+
+	client = new ClientHandler();
+	client->SetMainHwnd( (HWND)getFrame() );
+
+	// Information about the parent window, client rectangle, etc.
+	CefWindowInfo info;
+	RECT rect;
+	GetClientRect((HWND)getFrame(), &rect);
+	info.SetAsChild( (HWND)getFrame(), rect );
+
+	// Browser initialization settings.
+	CefBrowserSettings settings;
+
+	// Create the new browser window object asynchronously. This eventually results
+	// in a call to CefLifeSpanHandler::OnAfterCreated().
+//	CefBrowserHost::CreateBrowser(info, client.get(), "http://www.google.com", settings);
 }
 
 //-----------------------------------------------------------------------------
@@ -80,7 +109,7 @@ void launchNode(uv_work_t *req) {
 
 	GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
 
-	char *argv[] = {cCurrentPath, "C:/test.js" };
+	char *argv[] = {cCurrentPath, "D:/Projects/VectorAnimationTool/server.js" };
 	int argc = 2;
 
 	node::Start( argc, argv, true );

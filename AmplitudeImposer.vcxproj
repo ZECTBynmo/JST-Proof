@@ -39,6 +39,7 @@
     <OutDir>.\Debug\</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -49,18 +50,21 @@
     <ClCompile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <Optimization>Disabled</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level2</WarningLevel>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>false</MinimalRebuild>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN32_LEAN_AND_MEAN;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Debug\AmplitudeImposer.pch</PrecompiledHeaderOutputFile>
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
-      <AdditionalIncludeDirectories>$(SolutionDir)\VST;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\VST;$(solutiondir)\deps\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -84,12 +88,13 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>LIBCMT.lib libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <ModuleDefinitionFile>$(SolutionDir)\AmplitudeImposer.def</ModuleDefinitionFile>
       <OutputFile>.\Debug\AmplitudeImposer.dll</OutputFile>
       <ImportLibrary>.\Debug\AmplitudeImposer.lib</ImportLibrary>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrtd.lib;libcmt.lib;Ws2_32.lib;Iphlpapi.lib;MSVCPRTD.lib;WINMM.LIB;psapi.lib;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;LIBCPMTd.LIB;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;deps/node.lib;deps/libcef.lib;deps/libboost_system-vc90-sgd-1_52.lib;deps/cef/Debug/lib/libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceFileOutput>
+      </ForceFileOutput>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +106,7 @@
       <Optimization>MaxSpeed</Optimization>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <WarningLevel>Level2</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)\VST;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\VST;$(solutiondir)\deps\cef;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;STRICT;VSTGUI3;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>.\Release\AmplitudeImposer.pch</PrecompiledHeaderOutputFile>
@@ -135,13 +140,26 @@
       <OutputFile>.\Release\AmplitudeImposer.dll</OutputFile>
       <ImportLibrary>.\Release\AmplitudeImposer.lib</ImportLibrary>
       <AdditionalLibraryDirectories>C:\Program Files\DevStudio\MyProjects\VST Plugins\Common;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrt.lib;libcmt.lib;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;deps/node.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;msvcrt.lib;LIBCPMT.LIB;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;deps/node.lib;deps/libcef.lib;deps/cef/Release/lib/libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AmplitudeImposer.cpp" />
     <ClCompile Include="AmplitudeImposerEditor.cpp" />
     <ClCompile Include="AmplitudeImposerMain.cpp" />
+    <ClCompile Include="deps\cef\cefclient\binding_test.cpp" />
+    <ClCompile Include="deps\cef\cefclient\cefclient.cpp" />
+    <ClCompile Include="deps\cef\cefclient\cefclient_win.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_app.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_app_delegates.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_handler.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_handler_win.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_renderer.cpp" />
+    <ClCompile Include="deps\cef\cefclient\client_switches.cpp" />
+    <ClCompile Include="deps\cef\cefclient\dom_test.cpp" />
+    <ClCompile Include="deps\cef\cefclient\resource_util_win.cpp" />
+    <ClCompile Include="deps\cef\cefclient\scheme_test.cpp" />
+    <ClCompile Include="deps\cef\cefclient\string_util.cpp" />
     <ClCompile Include="RightClickControls.cpp" />
     <ClCompile Include="VST\audioeffect.cpp" />
     <ClCompile Include="VST\audioeffectx.cpp" />
@@ -161,6 +179,127 @@
   <ItemGroup>
     <ClInclude Include="AmplitudeImposer.h" />
     <ClInclude Include="AmplitudeImposerEditor.h" />
+    <ClInclude Include="deps\cef\cefclient\binding_test.h" />
+    <ClInclude Include="deps\cef\cefclient\cefclient.h" />
+    <ClInclude Include="deps\cef\cefclient\client_app.h" />
+    <ClInclude Include="deps\cef\cefclient\client_handler.h" />
+    <ClInclude Include="deps\cef\cefclient\client_renderer.h" />
+    <ClInclude Include="deps\cef\cefclient\client_switches.h" />
+    <ClInclude Include="deps\cef\cefclient\dom_test.h" />
+    <ClInclude Include="deps\cef\cefclient\resource.h" />
+    <ClInclude Include="deps\cef\cefclient\resource_util.h" />
+    <ClInclude Include="deps\cef\cefclient\scheme_test.h" />
+    <ClInclude Include="deps\cef\cefclient\string_util.h" />
+    <ClInclude Include="deps\cef\cefclient\util.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_app_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_base_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_browser_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_browser_process_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_callback_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_client_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_command_line_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_context_menu_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_cookie_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_display_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_dom_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_download_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_download_item_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_focus_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_frame_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_geolocation_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_jsdialog_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_keyboard_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_life_span_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_load_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_menu_model_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_origin_whitelist_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_path_util_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_process_message_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_process_util_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_proxy_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_render_process_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_request_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_request_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_resource_bundle_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_resource_handler_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_response_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_scheme_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_stream_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_string_visitor_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_task_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_urlrequest_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_url_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_v8_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_values_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_web_plugin_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_xml_reader_capi.h" />
+    <ClInclude Include="deps\cef\include\capi\cef_zip_reader_capi.h" />
+    <ClInclude Include="deps\cef\include\cef_app.h" />
+    <ClInclude Include="deps\cef\include\cef_base.h" />
+    <ClInclude Include="deps\cef\include\cef_browser.h" />
+    <ClInclude Include="deps\cef\include\cef_browser_process_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_callback.h" />
+    <ClInclude Include="deps\cef\include\cef_client.h" />
+    <ClInclude Include="deps\cef\include\cef_command_line.h" />
+    <ClInclude Include="deps\cef\include\cef_context_menu_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_cookie.h" />
+    <ClInclude Include="deps\cef\include\cef_display_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_dom.h" />
+    <ClInclude Include="deps\cef\include\cef_download_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_download_item.h" />
+    <ClInclude Include="deps\cef\include\cef_focus_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_frame.h" />
+    <ClInclude Include="deps\cef\include\cef_geolocation_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_jsdialog_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_keyboard_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_life_span_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_load_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_menu_model.h" />
+    <ClInclude Include="deps\cef\include\cef_origin_whitelist.h" />
+    <ClInclude Include="deps\cef\include\cef_pack_resources.h" />
+    <ClInclude Include="deps\cef\include\cef_pack_strings.h" />
+    <ClInclude Include="deps\cef\include\cef_path_util.h" />
+    <ClInclude Include="deps\cef\include\cef_process_message.h" />
+    <ClInclude Include="deps\cef\include\cef_process_util.h" />
+    <ClInclude Include="deps\cef\include\cef_proxy_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_render_process_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_request.h" />
+    <ClInclude Include="deps\cef\include\cef_request_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_resource_bundle_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_resource_handler.h" />
+    <ClInclude Include="deps\cef\include\cef_response.h" />
+    <ClInclude Include="deps\cef\include\cef_runnable.h" />
+    <ClInclude Include="deps\cef\include\cef_scheme.h" />
+    <ClInclude Include="deps\cef\include\cef_stream.h" />
+    <ClInclude Include="deps\cef\include\cef_string_visitor.h" />
+    <ClInclude Include="deps\cef\include\cef_task.h" />
+    <ClInclude Include="deps\cef\include\cef_url.h" />
+    <ClInclude Include="deps\cef\include\cef_urlrequest.h" />
+    <ClInclude Include="deps\cef\include\cef_v8.h" />
+    <ClInclude Include="deps\cef\include\cef_values.h" />
+    <ClInclude Include="deps\cef\include\cef_version.h" />
+    <ClInclude Include="deps\cef\include\cef_web_plugin.h" />
+    <ClInclude Include="deps\cef\include\cef_xml_reader.h" />
+    <ClInclude Include="deps\cef\include\cef_zip_reader.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_build.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_export.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_ptr.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string_list.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string_map.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string_multimap.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string_types.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_string_wrappers.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_time.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_tuple.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_types.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_types_win.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_types_wrappers.h" />
+    <ClInclude Include="deps\cef\include\internal\cef_win.h" />
+    <ClInclude Include="deps\cef\include\wrapper\cef_byte_read_handler.h" />
+    <ClInclude Include="deps\cef\include\wrapper\cef_stream_resource_handler.h" />
+    <ClInclude Include="deps\cef\include\wrapper\cef_xml_object.h" />
+    <ClInclude Include="deps\cef\include\wrapper\cef_zip_archive.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RightClickControls.h" />
     <ClInclude Include="VST\aeffeditor.h" />
