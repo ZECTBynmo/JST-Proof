@@ -45,6 +45,9 @@ protected:
 	virtual bool open(void *ptr);
 	virtual void close();
 
+	void initCEF();
+	void initNode();
+
 private:
 
 	RightClickHSlider *depth;
