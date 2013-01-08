@@ -92,9 +92,10 @@
       <ModuleDefinitionFile>$(SolutionDir)\AmplitudeImposer.def</ModuleDefinitionFile>
       <OutputFile>.\Debug\AmplitudeImposer.dll</OutputFile>
       <ImportLibrary>.\Debug\AmplitudeImposer.lib</ImportLibrary>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;LIBCPMTd.LIB;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;deps/node.lib;deps/libcef.lib;deps/libboost_system-vc90-sgd-1_52.lib;deps/cef/Debug/lib/libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;oldnames.lib;LIBCPMTd.LIB;Ws2_32.lib;Iphlpapi.lib;WINMM.LIB;psapi.lib;shlwapi.lib;deps/node.lib;deps/libcef.lib;deps/cef/Debug/lib/libcef_dll_wrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceFileOutput>
       </ForceFileOutput>
+      <DelayLoadDLLs>deps/cef/Debug/libcef.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
