@@ -76,10 +76,16 @@ AmplitudeImposerEditor::AmplitudeImposerEditor(AudioEffect *effect)
 	backBitmap  = new CBitmap(kBack);
 
 	// init the size of the plugin
-	rect.left   = 0;
-	rect.top    = 0;
-	rect.right  = (short)backBitmap->getWidth();
-	rect.bottom = (short)backBitmap->getHeight();
+// 	rect.left   = 0;
+// 	rect.top    = 0;
+// 	rect.right  = effect->getEditor()->getRect( rect );
+// 	rect.bottom = getFrame()->getHeight();
+
+// 	RECT rect;
+// 	GetWindowRect( (HWND)getFrame()->getSystemWindow(), &rect );
+// 
+// 	int i = 0;
+// 	i++;
 }
 
 //-----------------------------------------------------------------------------
@@ -127,9 +133,21 @@ bool AmplitudeImposerEditor::open(void *ptr)
 		sliderBitmap = new CBitmap(kSlider);
 
 	//--init background frame-------------------------------------------------
-	size(0, 0, backBitmap->getWidth(), backBitmap->getHeight());
+	size(0, 0, 1024, 768 );
 	frame = new CFrame(size, ptr, this);
-	frame->setBackground(backBitmap);
+
+
+	RECT rect;
+	GetWindowRect( (HWND)getFrame()->getSystemWindow(), &rect );
+
+	// Copy over into a CRect
+	CRect cRect;
+	cRect.bottom = rect.bottom;
+	cRect.top = rect.top;
+	cRect.left = rect.left;
+	cRect.right = rect.right;
+
+	getFrame()->setViewSize( cRect );
 
 	//--init sliders----------------------------------------------------------
 	size(114, 71, 278, 87);
@@ -147,13 +165,12 @@ bool AmplitudeImposerEditor::open(void *ptr)
 	frame->addView(threshold);
 
 	// Initialize CEF
-	initCEF();
+	initCEF( rect );
 
 	return true;
 }
 
-void AmplitudeImposerEditor::initCEF() {
-	RECT rect;
+void AmplitudeImposerEditor::initCEF( RECT rect ) {
 	HWND hWnd = (HWND)getFrame()->getSystemWindow();
 	HINSTANCE hInst = (HINSTANCE)GetWindowLong((HWND)getFrame()->getSystemWindow(), GWL_HINSTANCE);
 
@@ -221,11 +238,11 @@ void AmplitudeImposerEditor::initCEF() {
 	AppGetBrowserSettings( settings );
 
 	// Create the new child browser window
-	CefBrowserHost::CreateBrowserSync( info, client.get(), "http://www.google.com", settings );
+	//CefBrowserHost::CreateBrowserSync( info, client.get(), "http://www.google.com", settings );
 
 	// Create the new browser window object asynchronously. This eventually results
 	// in a call to CefLifeSpanHandler::OnAfterCreated().
-	//CefBrowserHost::CreateBrowser(info, client.get(), "http://www.google.com", settings);
+	CefBrowserHost::CreateBrowser(info, client.get(), "http://www.google.com", settings);
 }
 
 void AmplitudeImposerEditor::initNode() {

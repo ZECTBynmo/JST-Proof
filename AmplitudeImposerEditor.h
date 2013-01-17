@@ -45,7 +45,7 @@ protected:
 	virtual bool open(void *ptr);
 	virtual void close();
 
-	void initCEF();
+	void initCEF( RECT rect );
 	void initNode();
 
 private:
