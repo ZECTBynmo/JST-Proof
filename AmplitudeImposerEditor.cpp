@@ -103,7 +103,7 @@ void launchNode(uv_work_t *req) {
 
 	GetCurrentDir(cCurrentPath, sizeof(cCurrentPath));
 
-	char *argv[] = {cCurrentPath, "C:/test.js" };
+	char *argv[] = {cCurrentPath, "D:/Projects/JSTProof/JSTProof.js" };
 	int argc = 2;
 
 	node::Start( argc, argv, true );
@@ -171,78 +171,80 @@ bool AmplitudeImposerEditor::open(void *ptr)
 }
 
 void AmplitudeImposerEditor::initCEF( RECT rect ) {
-	HWND hWnd = (HWND)getFrame()->getSystemWindow();
-	HINSTANCE hInst = (HINSTANCE)GetWindowLong((HWND)getFrame()->getSystemWindow(), GWL_HINSTANCE);
-
-	// Grab our client rect
-	//GetClientRect( (HWND)getFrame()->getSystemWindow(), &rect );
-
-	rect.top = 0;
-	rect.bottom = getFrame()->getHeight();
-	rect.left = 0;
-	rect.right = getFrame()->getWidth();
-
-	int x = 0;
-	backWnd = CreateWindow("BUTTON", "Back",
-							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
-							| WS_DISABLED, x, 0, BUTTON_WIDTH, URLBAR_HEIGHT,
-							hWnd, (HMENU) IDC_NAV_BACK, hInst, 0);
-	x += BUTTON_WIDTH;
-
-	forwardWnd = CreateWindow("BUTTON", "Forward",
-							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
-							| WS_DISABLED, x, 0, BUTTON_WIDTH,
-							URLBAR_HEIGHT, hWnd, (HMENU) IDC_NAV_FORWARD,
-							hInst, 0);
-	x += BUTTON_WIDTH;
-
-	reloadWnd = CreateWindow("BUTTON", "Reload",
-							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
-							| WS_DISABLED, x, 0, BUTTON_WIDTH,
-							URLBAR_HEIGHT, hWnd, (HMENU) IDC_NAV_RELOAD,
-							hInst, 0);
-	x += BUTTON_WIDTH;
-
-	stopWnd = CreateWindow("BUTTON", "Stop",
-							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
-							| WS_DISABLED, x, 0, BUTTON_WIDTH, URLBAR_HEIGHT,
-							hWnd, (HMENU) IDC_NAV_STOP, hInst, 0);
-	x += BUTTON_WIDTH;
-
-	editWnd = CreateWindow("EDIT", 0,
-							WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT |
-							ES_AUTOVSCROLL | ES_AUTOHSCROLL| WS_DISABLED,
-							x, 0, rect.right - BUTTON_WIDTH * 4,
-							URLBAR_HEIGHT, hWnd, 0, hInst, 0);
-
-	// Initialize CEF
-	init( hInst, hWnd, rect );
-
-	// Create an instance of our CefClient implementation. Various methods in the
-	// MyClient instance will be called to notify about and customize browser
-	// behavior.
-	CefRefPtr<ClientHandler> client;
-
-	client = new ClientHandler();
-	client->SetMainHwnd( (HWND)getFrame()->getSystemWindow() );
-	client->SetEditHwnd( editWnd );
-	client->SetButtonHwnds( backWnd, forwardWnd, reloadWnd, stopWnd );
-
-	// Information about the parent window, client rectangle, etc.
-	CefWindowInfo info;
-	CefBrowserSettings settings;
-
-	info.SetAsChild( (HWND)getFrame()->getSystemWindow(), rect );
-
-	// Populate the settings based on command line arguments.
-	AppGetBrowserSettings( settings );
-
-	// Create the new child browser window
-	//CefBrowserHost::CreateBrowserSync( info, client.get(), "http://www.google.com", settings );
+// 	HWND hWnd = (HWND)getFrame()->getSystemWindow();
+// 	HINSTANCE hInst = (HINSTANCE)GetWindowLong((HWND)getFrame()->getSystemWindow(), GWL_HINSTANCE);
+// 
+// 	// Grab our client rect
+// 	//GetClientRect( (HWND)getFrame()->getSystemWindow(), &rect );
+// 
+// 	rect.top = 0;
+// 	rect.bottom = getFrame()->getHeight();
+// 	rect.left = 0;
+// 	rect.right = getFrame()->getWidth();
+// 
+// 	int x = 0;
+// 	backWnd = CreateWindow("BUTTON", "Back",
+// 							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
+// 							| WS_DISABLED, x, 0, BUTTON_WIDTH, URLBAR_HEIGHT,
+// 							hWnd, (HMENU) IDC_NAV_BACK, hInst, 0);
+// 	x += BUTTON_WIDTH;
+// 
+// 	forwardWnd = CreateWindow("BUTTON", "Forward",
+// 							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
+// 							| WS_DISABLED, x, 0, BUTTON_WIDTH,
+// 							URLBAR_HEIGHT, hWnd, (HMENU) IDC_NAV_FORWARD,
+// 							hInst, 0);
+// 	x += BUTTON_WIDTH;
+// 
+// 	reloadWnd = CreateWindow("BUTTON", "Reload",
+// 							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
+// 							| WS_DISABLED, x, 0, BUTTON_WIDTH,
+// 							URLBAR_HEIGHT, hWnd, (HMENU) IDC_NAV_RELOAD,
+// 							hInst, 0);
+// 	x += BUTTON_WIDTH;
+// 
+// 	stopWnd = CreateWindow("BUTTON", "Stop",
+// 							WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON
+// 							| WS_DISABLED, x, 0, BUTTON_WIDTH, URLBAR_HEIGHT,
+// 							hWnd, (HMENU) IDC_NAV_STOP, hInst, 0);
+// 	x += BUTTON_WIDTH;
+// 
+// 	editWnd = CreateWindow("EDIT", 0,
+// 							WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT |
+// 							ES_AUTOVSCROLL | ES_AUTOHSCROLL| WS_DISABLED,
+// 							x, 0, rect.right - BUTTON_WIDTH * 4,
+// 							URLBAR_HEIGHT, hWnd, 0, hInst, 0);
+// 
+// 	CefSettings cefSettings;
+// 
+// 	// Initialize CEF
+// 	init( hInst, hWnd, rect, cefSettings );
+// 
+// 	// Create an instance of our CefClient implementation. Various methods in the
+// 	// MyClient instance will be called to notify about and customize browser
+// 	// behavior.
+// 	CefRefPtr<ClientHandler> client;
+// 
+// 	client = new ClientHandler();
+// 	client->SetMainHwnd( (HWND)getFrame()->getSystemWindow() );
+// 	client->SetEditHwnd( editWnd );
+// 	client->SetButtonHwnds( backWnd, forwardWnd, reloadWnd, stopWnd );
+// 
+// 	// Information about the parent window, client rectangle, etc.
+// 	CefWindowInfo info;
+// 	CefBrowserSettings settings;
+// 
+// 	info.SetAsChild( (HWND)getFrame()->getSystemWindow(), rect );
+// 
+// 	// Populate the settings based on command line arguments.
+// 	AppGetBrowserSettings( settings );
+// 
+// 	// Create the new child browser window
+// 	CefBrowserHost::CreateBrowserSync( info, client.get(), "http://www.google.com", settings );
 
 	// Create the new browser window object asynchronously. This eventually results
 	// in a call to CefLifeSpanHandler::OnAfterCreated().
-	CefBrowserHost::CreateBrowser(info, client.get(), "http://www.google.com", settings);
+	//CefBrowserHost::CreateBrowser(info, client.get(), "http://www.google.com", settings);
 }
 
 void AmplitudeImposerEditor::initNode() {
